@@ -16,28 +16,7 @@ import {
 import { Heart, QrCode, ArrowLeft, Calendar, MapPin, Palette, UserCheck, Loader2, Users, Clock } from "lucide-react"
 import { QRCodeSVG } from 'qrcode.react';
 import Link from "next/link"
-
-// Mock guest data - in a real app, this would come from your API
-// const mockGuests = {
-//   mf25001: {
-//     id: 1,
-//     guestId: "mf25001",
-//     name: "Sarah Johnson",
-//     email: "sarah@example.com",
-//     phone: "+1234567890",
-//     attendingStatus: "yes",
-//     guestType: "single",
-//     approvalStatus: "approved",
-//     giftSelected: "yes",
-//     giftType: "gift",
-//     checkedIn: false,
-//     createdAt: "2024-05-15T10:30:00Z",
-//     selectedGifts: [
-//       { id: 1, name: "Toaster", description: "Kitchen appliance for toasting bread" },
-//       { id: 3, name: "Dinner Set", description: "Complete dinner set for 6 people" },
-//     ],
-//   },
-// }
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // Mock event details
 const eventDetails = {
@@ -107,7 +86,7 @@ export default function GuestProfilePage({ params }: { params: { guestId: string
       setLoading(true)
       try {
         // Simulate API call delay
-        const res = await fetch(`http://localhost:4000/api/guests/${guestId}`)
+        const res = await fetch(`${apiUrl}/guests/${guestId}`)
         if (!res.ok) {
           if(res.status === 404) {
             setError("Guest not found. Please check the ID and try again.")

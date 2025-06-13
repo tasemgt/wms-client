@@ -10,22 +10,7 @@ import { Label } from "@/components/ui/label"
 import { Alert, AlertDescription } from "@/components/ui/alert"
 import { Heart, Shield, ArrowLeft, Loader2, Eye, EyeOff } from "lucide-react"
 import Link from "next/link"
-
-// Sample user credentials for testing
-// const sampleUsers = [
-//   {
-//     email: "admin@wedding.com",
-//     password: "admin123",
-//     role: "admin",
-//     name: "Wedding Admin",
-//   },
-//   {
-//     email: "bouncer@wedding.com",
-//     password: "bouncer123",
-//     role: "bouncer",
-//     name: "Security Team",
-//   },
-// ]
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function LoginPage() {
   const [email, setEmail] = useState("")
@@ -60,13 +45,8 @@ export default function LoginPage() {
     setIsLoading(true)
     setError("")
 
-    // Simulate login process
-    // setTimeout(() => {
-      // Check credentials against sample users
-      // const user = sampleUsers.find((u) => u.email === email && u.password === password)
-
       try {
-        const res = await fetch("http://localhost:4000/api/auth/login", {
+        const res = await fetch(`${apiUrl}/auth/login`, {
           method: "POST",
           credentials: "include", // 👈 ensures cookie is set
           headers: {
@@ -81,7 +61,7 @@ export default function LoginPage() {
           const user = data.user
           
           if (user) {
-            // Store user info in localStorage (in a real app, you'd use proper session management)
+            // Store user info in localStorage (full cookie handling can be better)
             localStorage.setItem("user", JSON.stringify(user))
     
             // Redirect based on role

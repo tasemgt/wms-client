@@ -15,6 +15,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import Link from "next/link"
 import { apiRequest } from "../../lib/http"
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function RegisterPage() {
   const [step, setStep] = useState(1)
@@ -39,7 +40,7 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(true);
   
   useEffect(() => {
-    fetch('http://localhost:4000/api/giftitem')
+    fetch(`${apiUrl}/giftitem`)
       .then((res) => {
         if (!res.ok) {
           throw new Error('Network response was not ok');
@@ -116,7 +117,7 @@ export default function RegisterPage() {
       // // Simulate API call
       // await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      const res = await apiRequest("http://localhost:4000/api/guests/register", {
+      const res = await apiRequest(`${apiUrl}/guests/register`, {
         method: "POST",
           body: JSON.stringify(payload),
       });

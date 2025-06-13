@@ -8,6 +8,7 @@ import Link from "next/link"
 import BouncerLayout from "@/components/bouncer-layout"
 import { useEffect, useState } from "react"
 import { apiRequest } from "@/lib/http"
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // Mock data - in real app, this would come from your database
 // const bouncerStats = {
@@ -32,7 +33,7 @@ export default function BouncerDashboard() {
     console.log('Fetching bouncer stats...');
     try {
       // Fetch bouncer stats from the API
-      const res = await apiRequest('http://localhost:4000/api/bouncer/stats', {method: "GET"})
+      const res = await apiRequest(`${apiUrl}/bouncer/stats`, {method: "GET"})
       if (!res.ok) throw new Error('Failed to fetch bouncer stats');
       const bouncerStatsData = await res.json();
       setBouncerStats(bouncerStatsData);

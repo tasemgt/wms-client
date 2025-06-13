@@ -22,179 +22,7 @@ import AdminLayout from "@/components/admin-layout"
 import { Label } from "@/components/ui/label"
 import { apiRequest } from "@/lib/http"
 
-// Mock data - in a real app, this would come from your database
-let mockGuests = [
-  {
-    id: 1,
-    guestId: "mf25001",
-    name: "Sarah Johnson",
-    email: "sarah@example.com",
-    phone: "+1234567890",
-    attendingStatus: "yes",
-    guestType: "single",
-    approvalStatus: "approved",
-    giftPreference: "yes",
-    giftType: "gift",
-    checkedIn: false,
-    isAnonymous: false,
-    dateRegistered: "2024-05-15T10:30:00Z",
-    dateApproved: "2024-05-15T14:20:00Z",
-    approvedBy: "Wedding Admin",
-    grantedAccess: true,
-    grantedAccessBy: "Wedding Admin",
-    grantedAccessAt: "2024-05-15T14:20:00Z",
-    createdAt: "2024-05-15T10:30:00Z",
-    selectedGifts: [
-      { id: 1, name: "Toaster", description: "Kitchen appliance for toasting bread" },
-      { id: 3, name: "Dinner Set", description: "Complete dinner set for 6 people" },
-    ],
-  },
-  {
-    id: 2,
-    guestId: "mf25002",
-    name: "Mike Chen",
-    email: "mike@example.com",
-    phone: "+1987654321",
-    attendingStatus: "yes",
-    guestType: "group",
-    approvalStatus: "approved",
-    giftPreference: "yes",
-    giftType: "money",
-    moneyContribution: 200,
-    checkedIn: false,
-    isAnonymous: false,
-    dateRegistered: "2024-05-15T11:45:00Z",
-    dateApproved: "2024-05-15T16:10:00Z",
-    approvedBy: "Event Coordinator",
-    grantedAccess: true,
-    grantedAccessBy: "Event Coordinator",
-    grantedAccessAt: "2024-05-15T16:10:00Z",
-    createdAt: "2024-05-15T11:45:00Z",
-    groupMembers: ["Lisa Chen", "David Chen"],
-    selectedGifts: [],
-  },
-  {
-    id: 3,
-    guestId: "mf25003",
-    name: "Emma Wilson",
-    email: "emma@example.com",
-    phone: "+1122334455",
-    attendingStatus: "maybe",
-    guestType: "single",
-    approvalStatus: "pending",
-    giftPreference: "yes",
-    giftType: "gift",
-    checkedIn: false,
-    isAnonymous: false,
-    dateRegistered: "2024-05-16T09:15:00Z",
-    dateApproved: null,
-    approvedBy: null,
-    grantedAccess: false,
-    grantedAccessBy: null,
-    grantedAccessAt: null,
-    createdAt: "2024-05-16T09:15:00Z",
-    selectedGifts: [
-      { id: 2, name: "Blender", description: "Kitchen blender for smoothies and cooking" },
-      { id: 5, name: "Coffee Maker", description: "Automatic coffee brewing machine" },
-    ],
-  },
-  {
-    id: 4,
-    guestId: "mf25004",
-    name: "David Brown",
-    email: "david@example.com",
-    phone: "+1555666777",
-    attendingStatus: "yes",
-    guestType: "group",
-    approvalStatus: "pending",
-    giftPreference: "yes",
-    giftType: "money",
-    moneyContribution: 150,
-    checkedIn: false,
-    isAnonymous: false,
-    dateRegistered: "2024-05-16T14:20:00Z",
-    dateApproved: null,
-    approvedBy: null,
-    grantedAccess: false,
-    grantedAccessBy: null,
-    grantedAccessAt: null,
-    createdAt: "2024-05-16T14:20:00Z",
-    groupMembers: ["Jennifer Brown", "Michael Brown", "Sophia Brown"],
-    selectedGifts: [],
-  },
-  {
-    id: 5,
-    guestId: "mf25005",
-    name: "Jessica Taylor",
-    email: "jessica@example.com",
-    phone: "+1777888999",
-    attendingStatus: "no",
-    guestType: "single",
-    approvalStatus: "approved",
-    giftPreference: "no",
-    checkedIn: false,
-    isAnonymous: false,
-    dateRegistered: "2024-05-17T08:45:00Z",
-    dateApproved: "2024-05-17T10:30:00Z",
-    approvedBy: "Wedding Admin",
-    grantedAccess: false,
-    grantedAccessBy: null,
-    grantedAccessAt: null,
-    createdAt: "2024-05-17T08:45:00Z",
-    selectedGifts: [],
-  },
-  {
-    id: 6,
-    guestId: "anonymous001",
-    name: "Anonymous",
-    email: null,
-    phone: null,
-    attendingStatus: "no",
-    guestType: "single",
-    approvalStatus: "approved",
-    giftPreference: "yes",
-    giftType: "money",
-    moneyContribution: 100,
-    checkedIn: false,
-    isAnonymous: true,
-    dateRegistered: "2024-05-17T12:15:00Z",
-    dateApproved: "2024-05-17T12:20:00Z",
-    approvedBy: "Wedding Admin",
-    grantedAccess: false,
-    grantedAccessBy: null,
-    grantedAccessAt: null,
-    createdAt: "2024-05-17T12:15:00Z",
-    selectedGifts: [],
-  },
-  // Add more mock guests for pagination demo with the new fields
-  ...Array.from({ length: 15 }, (_, i) => ({
-    id: i + 7,
-    guestId: `mf250${String(i + 7).padStart(2, "0")}`,
-    name: `Guest ${i + 7}`,
-    email: `guest${i + 7}@example.com`,
-    phone: `+155566677${i + 7}`,
-    attendingStatus: ["yes", "maybe", "no"][i % 3] as "yes" | "maybe" | "no",
-    guestType: ["single", "group"][i % 2] as "single" | "group",
-    approvalStatus: ["approved", "pending"][i % 2] as "approved" | "pending",
-    giftPreference: ["yes", "no"][i % 2] as "yes" | "no",
-    giftType: ["gift", "money"][i % 2] as "gift" | "money",
-    moneyContribution: i % 2 === 1 ? (i + 1) * 50 : undefined,
-    checkedIn: false,
-    isAnonymous: false,
-    dateRegistered: "2024-05-17T08:45:00Z",
-    dateApproved: i % 2 === 0 ? "2024-05-17T10:30:00Z" : null,
-    approvedBy: i % 2 === 0 ? "Wedding Admin" : null,
-    grantedAccess: i % 2 === 0,
-    grantedAccessBy: i % 2 === 0 ? "Wedding Admin" : null,
-    grantedAccessAt: i % 2 === 0 ? "2024-05-17T10:30:00Z" : null,
-    createdAt: "2024-05-17T08:45:00Z",
-    groupMembers: i % 2 === 1 ? [`Member ${i + 7}A`, `Member ${i + 7}B`] : undefined,
-    selectedGifts:
-      i % 2 === 0
-        ? [{ id: (i % 3) + 1, name: `Gift Item ${(i % 3) + 1}`, description: `Description for gift ${(i % 3) + 1}` }]
-        : [],
-  })),
-]
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const ITEMS_PER_PAGE = 10
 
@@ -213,7 +41,7 @@ export default function GuestsPage() {
 
   const fetchGuests = async () => {
   try {
-    const res = await apiRequest("http://localhost:4000/api/guests", { method: "GET" });
+    const res = await apiRequest(`${apiUrl}/guests`, { method: "GET" });
 
     if (!res.ok) {
       throw new Error("Network response was not ok");
@@ -289,7 +117,7 @@ export default function GuestsPage() {
       // Simulate API call
       // await new Promise((resolve) => setTimeout(resolve, 2000))
 
-      const res = await apiRequest(`http://localhost:4000/api/admin/guests/${guestId}/approve`, {
+      const res = await apiRequest(`${apiUrl}/admin/guests/${guestId}/approve`, {
       method: "POST",});
 
       if (!res.ok) {

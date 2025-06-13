@@ -8,6 +8,8 @@ import AdminLayout from "@/components/admin-layout"
 import { apiRequest } from "@/lib/http"
 import { set } from "date-fns"
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 // Mock data - in real app, this would come from your database
 // const dashboardStats = {
 //   totalGuests: 156,
@@ -41,7 +43,7 @@ export default function AdminDashboard() {
       // setLoading(true);
       try {
         // Fetch dashboard stats
-        const res = await apiRequest('http://localhost:4000/api/admin/dashboard', { method: "GET" });
+        const res = await apiRequest(`${apiUrl}/admin/dashboard`, { method: "GET" });
         if (!res.ok) throw new Error('Failed to fetch dashboard stats');
         const dashboardStats = await res.json();
         console.log('Dashboard Stats:', dashboardStats);

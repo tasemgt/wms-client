@@ -23,6 +23,8 @@ import { Toaster } from "@/components/ui/toaster"
 import AdminLayout from "@/components/admin-layout"
 import { apiRequest } from "@/lib/http"
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+
 // Mock data - in a real app, this would come from your database
 // const giftItems = [
 //   { id: 1, name: "Toaster", description: "Kitchen appliance for toasting bread", pickedCount: 5 },
@@ -93,7 +95,7 @@ const [loading, setLoading] = useState(true);
 
 
 const fetchGifts = async () => {
-  const giftRes = await fetch('http://localhost:4000/api/giftitem');
+  const giftRes = await fetch(`${apiUrl}/giftitem`);
   if (!giftRes.ok) throw new Error('Failed to fetch gift items');
   const giftData = await giftRes.json();
   setGiftItems(giftData.reverse());
@@ -104,13 +106,13 @@ useEffect(() => {
     setLoading(true);
     try {
       // Fetch gift items
-      const giftRes = await fetch('http://localhost:4000/api/giftitem');
+      const giftRes = await fetch(`${apiUrl}/giftitem`);
       if (!giftRes.ok) throw new Error('Failed to fetch gift items');
       const giftData = await giftRes.json();
       setGiftItems(giftData.reverse());
 
       // Fetch money contributions
-      const contributionRes = await apiRequest('http://localhost:4000/api/guests/contributions', { method: "GET" });
+      const contributionRes = await apiRequest(`${apiUrl}/guests/contributions`, { method: "GET" });
       if (!contributionRes.ok) throw new Error('Failed to fetch contributions');
       const contributionData = await contributionRes.json();
       setMoneyContributions(contributionData.reverse());
@@ -177,7 +179,7 @@ useEffect(() => {
       // Simulate API call
       // await new Promise((resolve) => setTimeout(resolve, 2000))
       
-      const res = await apiRequest("http://localhost:4000/api/giftitem", {
+      const res = await apiRequest(`${apiUrl}/giftitem`, {
       method: "POST",
         body: JSON.stringify(payload),
       });

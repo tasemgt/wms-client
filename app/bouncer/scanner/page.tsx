@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, use } from "react"
+import { useState, useRef, useEffect, use, Suspense } from "react"
 import { useSearchParams } from 'next/navigation';
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
@@ -20,6 +20,7 @@ import BouncerLayout from "@/components/bouncer-layout"
 import { toast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import { apiRequest } from "@/lib/http"
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function ScannerPage() {
   const searchParams = useSearchParams();
@@ -36,7 +37,7 @@ export default function ScannerPage() {
     if (!guestId && !manualGuestId) return;
     const searchKey = manualGuestId || guestId;
     try {
-      const response = await fetch(`http://localhost:4000/api/guests/${searchKey}`);
+      const response = await fetch(`${apiUrl}/guests/${searchKey}`);
       if (!response.ok) {
         throw new Error("Guest not found");
       }
@@ -79,7 +80,7 @@ export default function ScannerPage() {
     setLoadingStates((prev) => ({ ...prev, [loadingKey]: true }))
 
     try {
-      const res = await apiRequest(`http://localhost:4000/api/bouncer/grant-access/${guestId}`, {
+      const res = await apiRequest(`${apiUrl}/bouncer/grant-access/${guestId}`, {
         method: "POST",
       });
 
@@ -124,7 +125,7 @@ export default function ScannerPage() {
     // Logs scanned guest ID from URL parameters
     fetchGuestData();
     if (!guestId) return;
-    apiRequest(`http://localhost:4000/api/bouncer/log`, {
+    apiRequest(`${apiUrl}/bouncer/log`, {
         method: "POST",
         body: JSON.stringify({ guestId })
       }).then((res) => {
@@ -141,6 +142,7 @@ export default function ScannerPage() {
 
   return (
     <BouncerLayout>
+      <Suspense fallback={<div>Loading...</div>}>
       <div className="space-y-6">
         <Toaster />
 
@@ -425,6 +427,7 @@ export default function ScannerPage() {
           </Dialog>
         )}
       </div>
+      </Suspense>
     </BouncerLayout>
   )
 }

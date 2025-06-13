@@ -54,9 +54,9 @@ export default function GuestProfilePage() {
 
   // For demo purposes, we'll use the mock guest data
   // In a real app, you would fetch the guest data based on authentication or guestId
-  useState(() => {
-    setGuest(mockGuest)
-  }, [])
+  // useState(() => {
+  //   setGuest(mockGuest)
+  // }, [])
 
   const handleLookup = () => {
     setIsLoading(true)

@@ -35,45 +35,7 @@ import { toast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import { apiRequest } from "@/lib/http"
 
-// Mock data - in a real app, this would come from your database
-// const users = [
-//   {
-//     id: 1,
-//     name: "Wedding Admin",
-//     email: "admin@wedding.com",
-//     role: "admin",
-//     createdAt: "2024-01-15T10:30:00Z",
-//   },
-//   {
-//     id: 2,
-//     name: "Security Team Lead",
-//     email: "security@wedding.com",
-//     role: "bouncer",
-//     createdAt: "2024-01-20T14:45:00Z",
-//   },
-//   {
-//     id: 3,
-//     name: "Event Coordinator",
-//     email: "coordinator@wedding.com",
-//     role: "admin",
-//     createdAt: "2024-02-05T09:15:00Z",
-//   },
-//   {
-//     id: 4,
-//     name: "Entrance Security",
-//     email: "entrance@wedding.com",
-//     role: "bouncer",
-//     createdAt: "2024-02-10T11:30:00Z",
-//   },
-//   // Add more mock users for pagination demo
-//   ...Array.from({ length: 20 }, (_, i) => ({
-//     id: i + 5,
-//     name: `User ${i + 5}`,
-//     email: `user${i + 5}@wedding.com`,
-//     role: i % 2 === 0 ? "admin" : "bouncer",
-//     createdAt: "2024-02-15T12:00:00Z",
-//   })),
-// ]
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const ITEMS_PER_PAGE = 10
 
@@ -94,7 +56,7 @@ export default function UsersPage() {
 
    const fetchUsers = async () => {
     try {
-      const res = await apiRequest("http://localhost:4000/api/admin/users", { method: "GET" });
+      const res = await apiRequest(`${apiUrl}/admin/users`, { method: "GET" });
   
       if (!res.ok) {
         throw new Error("Network response was not ok");
@@ -158,7 +120,7 @@ export default function UsersPage() {
       console.log(JSON.stringify(payload, null, 2))
       console.log("=== END PAYLOAD ===")
 
-      const res = await apiRequest(`http://localhost:4000/api/auth/register`, {
+      const res = await apiRequest(`${apiUrl}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
