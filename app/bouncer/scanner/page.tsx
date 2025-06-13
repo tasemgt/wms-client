@@ -1,7 +1,6 @@
 "use client"
 
-import { useState, useRef, useEffect, use, Suspense } from "react"
-import { useSearchParams } from 'next/navigation';
+import { useState, useRef, useEffect, use } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -23,8 +22,8 @@ import { apiRequest } from "@/lib/http"
 const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 export default function ScannerPage() {
-  const searchParams = useSearchParams();
-  const guestId = searchParams.get('guestId')
+  // const searchParams = useSearchParams();
+  // const guestId = searchParams.get('guestId')
   const [activeTab, setActiveTab] = useState("manual")
   const [isScanning, setIsScanning] = useState(false)
   const [scannedGuest, setScannedGuest] = useState<any>(null)
@@ -32,6 +31,9 @@ export default function ScannerPage() {
   const [manualGuestId, setManualGuestId] = useState("")
   const [loadingStates, setLoadingStates] = useState<{ [key: string]: boolean }>({})
   const videoRef = useRef<HTMLVideoElement>(null)
+  const [queryParams, setQueryParams] = useState({});
+  const [guestId, setGuestId] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
 
   const fetchGuestData = async (manualGuestId?: string | null) => {
     if (!guestId && !manualGuestId) return;
@@ -123,26 +125,41 @@ export default function ScannerPage() {
 
   useEffect(() => {
     // Logs scanned guest ID from URL parameters
-    fetchGuestData();
-    if (!guestId) return;
-    apiRequest(`${apiUrl}/bouncer/log`, {
-        method: "POST",
-        body: JSON.stringify({ guestId })
-      }).then((res) => {
-        if (res.ok) {
-          console.log("Logged:", guestId);
-        } else {
-          console.error("Failed to Log", guestId);
+
+    setMounted(true);
+    
+    if (typeof window !== 'undefined') {
+      const urlParams = new URLSearchParams(window.location.search);
+      const params = Object.fromEntries(urlParams);
+      setQueryParams(params);
+      setGuestId(params.guestId);
+      console.log("Query Params:", params);
+      fetchGuestData();
+      if (!guestId) return;
+      apiRequest(`${apiUrl}/bouncer/log`, {
+          method: "POST",
+          body: JSON.stringify({ guestId })
+        }).then((res) => {
+          if (res.ok) {
+            console.log("Logged:", guestId);
+          } else {
+            console.error("Failed to Log", guestId);
+          }
         }
-      }
-    ).catch((error) => {
-      console.error("Error logging guest:", error);
-    });
+      ).catch((error) => {
+        console.error("Error logging guest:", error);
+      });
+    }
+
   }, [guestId]) // Note: Guest ID is fetched from URL parameters
+
+  // Prevent hydration mismatch
+  if (!mounted) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <BouncerLayout>
-      <Suspense fallback={<div>Loading...</div>}>
       <div className="space-y-6">
         <Toaster />
 
@@ -427,7 +444,6 @@ export default function ScannerPage() {
           </Dialog>
         )}
       </div>
-      </Suspense>
     </BouncerLayout>
   )
 }
