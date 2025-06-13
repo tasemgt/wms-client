@@ -1,0 +1,25 @@
+# Node modules
+node_modules/
+
+# Build output
+.next/
+out/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local env files
+.env.local
+.env.*.local
+
+# Optional: ignore test coverage
+coverage/
+
+# Vercel or other deployment platform config
+.vercel/
