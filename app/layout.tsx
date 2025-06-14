@@ -11,9 +11,8 @@ const roboto = Questrial({
 })
 
 export const metadata: Metadata = {
-  title: "Wedding Management System",
-  description: "Complete wedding invitation and guest management platform",
-    generator: 'v0.dev'
+  title: "WMS",
+  description: "#MF25 - Invites you",
 }
 
 export default function RootLayout({
