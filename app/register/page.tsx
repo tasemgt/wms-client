@@ -282,7 +282,7 @@ export default function RegisterPage() {
                         <div className="mt-4 grid md:grid-cols-2 gap-4">
                           <Card className="bg-secondary/10">
                             <CardContent className="p-4">
-                              <h4 className="font-semibold text-primary mb-2">Primary Account Details</h4>
+                              <h4 className="font-semibold text-primary mb-2">Account Details 1</h4>
                               <div className="space-y-1 text-sm">
                                 <p>
                                   <strong>Bank:</strong> Globus Bank Nigeria
@@ -298,7 +298,7 @@ export default function RegisterPage() {
                           </Card>
                           <Card className="bg-secondary/10">
                             <CardContent className="p-4">
-                              <h4 className="font-semibold text-primary mb-2">Alternative Account Details</h4>
+                              <h4 className="font-semibold text-primary mb-2">Account Details 2</h4>
                               <div className="space-y-1 text-sm">
                                 <p>
                                   <strong>Bank:</strong> GTBank Nigeria
@@ -640,7 +640,7 @@ export default function RegisterPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone">WhatsApp Phone Number *</Label>
+                    <Label htmlFor="phone">Phone Number *</Label>
                     <div className="flex gap-2">
                       <Select
                         value={formData.countryCode}
@@ -672,7 +672,7 @@ export default function RegisterPage() {
                         required
                       />
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1">Required to send QR code and event updates</p>
+                    <p className="text-sm text-muted-foreground mt-1">Required to send your e-card link and event updates</p>
                   </div>
                   <div>
                     <Label htmlFor="email">Email Address (Optional)</Label>
@@ -712,7 +712,7 @@ export default function RegisterPage() {
             {step === 3 && (
               <>
                 <div>
-                  <Label className="text-base font-semibold">Would you like to give a gift?</Label>
+                  <Label className="text-base font-semibold">Would you prefer to pick a gift for the couple here?</Label>
                   <RadioGroup
                     value={formData.giftPreference}
                     onValueChange={(value) => setFormData((prev) => ({ ...prev, giftPreference: value }))}
@@ -720,11 +720,11 @@ export default function RegisterPage() {
                   >
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="yes" id="gift-yes" />
-                      <Label htmlFor="gift-yes">Yes, I'd love to give a gift</Label>
+                      <Label htmlFor="gift-yes">Yes, I'd love to</Label>
                     </div>
                     <div className="flex items-center space-x-2">
                       <RadioGroupItem value="no" id="gift-no" />
-                      <Label htmlFor="gift-no">No, just my presence is my present</Label>
+                      <Label htmlFor="gift-no">No, I can do this off record</Label>
                     </div>
                   </RadioGroup>
                 </div>
@@ -802,7 +802,7 @@ export default function RegisterPage() {
                         <div className="mt-4 grid md:grid-cols-2 gap-4">
                           <Card className="bg-secondary/10">
                             <CardContent className="p-4">
-                              <h4 className="font-semibold text-primary mb-2">Primary Account Details</h4>
+                              <h4 className="font-semibold text-primary mb-2">Account Details 1</h4>
                               <div className="space-y-1 text-sm">
                                 <p>
                                   <strong>Bank:</strong> Globus Bank Nigeria
@@ -818,7 +818,7 @@ export default function RegisterPage() {
                           </Card>
                           <Card className="bg-secondary/10">
                             <CardContent className="p-4">
-                              <h4 className="font-semibold text-primary mb-2">Alternative Account Details</h4>
+                              <h4 className="font-semibold text-primary mb-2">Account Details 2</h4>
                               <div className="space-y-1 text-sm">
                                 <p>
                                   <strong>Bank:</strong> GTBank Nigeria
