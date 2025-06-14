@@ -94,14 +94,14 @@ export default function LoginPage() {
             <Heart className="h-8 w-8 text-primary fill-primary" />
             <Shield className="h-8 w-8 text-primary" />
           </div>
-          <h1 className="text-3xl font-bold text-gray-700">System Login</h1>
-          <p className="text-gray-600">Access the wedding management system</p>
+          <h1 className="text-3xl font-bold text-gray-700">Admin Login</h1>
+          <p className="text-gray-600">Access WMS</p>
         </div>
 
         <Card className="border-2 border-primary/20">
           <CardHeader>
             <CardTitle className="text-primary">Welcome Back</CardTitle>
-            <CardDescription>Sign in to access your dashboard</CardDescription>
+            <CardDescription>Sign in to gain admin access</CardDescription>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleLogin} className="space-y-4">
