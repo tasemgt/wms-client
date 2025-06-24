@@ -3,10 +3,10 @@ import type { Metadata } from "next"
 import { Roboto, Questrial } from "next/font/google"
 import "./globals.css"
 
-const roboto = Questrial({
+const roboto = Roboto({
   subsets: ["latin"],
-  weight: "400", //["100", "300", "400", "500", "700", "900"],
-  style: ["normal"],
+  weight: "400",
+  style: ["normal", "italic"],
   display: "swap",
 })
 

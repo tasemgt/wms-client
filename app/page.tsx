@@ -18,6 +18,16 @@ import { Heart, Send, User, Gift, QrCode, Calendar, Loader2 } from "lucide-react
 import Link from "next/link"
 import { useRouter } from "next/navigation"
 
+import { Licorice } from 'next/font/google'
+
+const roboto = Licorice({
+  subsets: ['latin'],
+  weight: ['400'],
+  style: ['normal'],
+  display: 'swap',
+})
+
+
 import './styles.css'
 
 export default function HomePage() {
@@ -65,7 +75,8 @@ export default function HomePage() {
         <div className="max-w-4xl mx-auto">
           <div className="mb-8">
             <Heart className="h-16 w-16 text-primary fill-primary mx-auto mb-4" />
-            <h2 className="text-4xl md:text-6xl font-bold text-gray-700 mb-4">You're Invited!</h2>
+            <h2 className="text-4xl md:text-6xl font-bold text-gray-700 mb-4">Mike & Faith <br/> 
+            <span className={roboto.className}>Invites You!</span></h2>
             <p className="text-xl text-gray-600 mb-8">
               Join us in celebrating our special day. Please confirm your attendance and help us make this celebration
               perfect.
