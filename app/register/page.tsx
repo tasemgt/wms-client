@@ -411,7 +411,7 @@ export default function RegisterPage() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="phone">WhatsApp Phone Number (Optional)</Label>
+                        <Label htmlFor="phone">Phone Number (Optional)</Label>
                         <div className="flex gap-2">
                           <Select
                             value={formData.countryCode}
@@ -672,7 +672,7 @@ export default function RegisterPage() {
                         required
                       />
                     </div>
-                    <p className="text-sm text-muted-foreground mt-1">Required to send your e-card link and event updates</p>
+                    <p className="text-sm text-muted-foreground mt-1">We need this to send your e-card link and other event updates</p>
                   </div>
                   <div>
                     <Label htmlFor="email">Email Address (Optional)</Label>
@@ -798,6 +798,7 @@ export default function RegisterPage() {
                             className="pl-8"
                           />
                         </div>
+                        <br />
                         <p>Kindly send your contribution to any of the accounts below</p>
                         <div className="mt-4 grid md:grid-cols-2 gap-4">
                           <Card className="bg-secondary/10">

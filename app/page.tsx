@@ -50,7 +50,7 @@ export default function HomePage() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <Heart className="h-8 w-8 text-primary fill-primary" />
-            <h1 className="text-2xl font-bold text-gray-700">#MF25</h1>
+            <h1 className="text-2xl font-bold text-gray-700">#MIFA25</h1>
           </div>
           <div className="flex gap-2">
             <Button variant="outline" asChild>
@@ -186,7 +186,7 @@ export default function HomePage() {
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="text-lg font-semibold">With</span>
             <Heart className="h-6 w-6 fill-white" />
-            <span className="text-lg font-semibold">#MF25</span>
+            <span className="text-lg font-semibold">#MIFA25</span>
           </div>
         </div>
       </footer>

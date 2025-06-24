@@ -12,7 +12,7 @@ const roboto = Questrial({
 
 export const metadata: Metadata = {
   title: "WMS",
-  description: "#MF25 - Invites you",
+  description: "#MIFA25 - Invites you",
 }
 
 export default function RootLayout({

@@ -53,7 +53,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       <div className="flex items-center gap-2 mb-8">
         <Heart className="h-8 w-8 text-primary fill-primary" />
         <div>
-          <h1 className="text-xl font-bold text-gray-700">#MF25</h1>
+          <h1 className="text-xl font-bold text-gray-700">#MIFA25</h1>
           <p className="text-sm text-gray-600">Admin Panel</p>
         </div>
       </div>
