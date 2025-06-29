@@ -20,7 +20,7 @@ const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 // Mock event details
 const eventDetails = {
-  name: "Michael & Faith's Wedding",
+  name: "Mike & Faith",
   date: "Saturday, July 12th, 2025",
   time: "2:00PM",
   venue: "Event Hall, Top Rank Hotels Galaxy Utako, Abuja",
@@ -367,7 +367,7 @@ export default function GuestProfilePage({ params }: { params: { guestId: string
             {/* Wedding Details Section */}
             <div className="text-center mb-6">
               <div className="mb-4">
-                <h2 className="text-2xl font-bold mb-2" style={{color: 'rgb(103, 49, 71)'}}>Michael & Faith's Wedding</h2>
+                <h2 className="text-2xl font-bold mb-2" style={{color: 'rgb(103, 49, 71)'}}>Mike & Faith's Wedding</h2>
                 <div className="text-sm text-gray-600 space-y-1">
                   <div className="flex items-center justify-center gap-2">
                     <Calendar className="h-4 w-4" style={{color: 'rgb(103, 49, 71)'}} />

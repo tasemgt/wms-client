@@ -121,7 +121,7 @@ export default function GuestProfilePage() {
                     </Button>
                   </div>
                   <p className="text-xs text-muted-foreground mt-1">
-                    Your Guest ID was provided in your invitation or WhatsApp message
+                    Your Guest ID was provided in your invitation, SMS or email. 
                   </p>
                 </div>
               </div>

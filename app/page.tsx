@@ -166,7 +166,7 @@ export default function HomePage() {
                       }}
                     />
                     <p className="text-xs text-muted-foreground">
-                      Your Guest ID was provided in your invitation or WhatsApp message
+                      Your Guest ID was provided in your invitation, SMS or email. 
                     </p>
                   </div>
                 </div>
