@@ -589,6 +589,9 @@ export default function RegisterPage() {
                 {formData.guestType === "group" && (
                   <div>
                     <Label className="text-base font-semibold">Group Member Names</Label>
+                    <p className="text-sm text-muted-foreground mt-2">
+                        <strong>Note:</strong> Only your other group member names. Please do not add your name here
+                      </p>
                     <div className="space-y-2 mt-2">
                       {formData.groupMembers.map((member, index) => (
                         <div key={index} className="flex gap-2">
