@@ -643,7 +643,7 @@ export default function RegisterPage() {
                     />
                   </div>
                   <div>
-                    <Label htmlFor="phone">Phone Number *</Label>
+                    <Label htmlFor="phone">Phone Number (Whatsapp preferably) *</Label>
                     <div className="flex gap-2">
                       <Select
                         value={formData.countryCode}
