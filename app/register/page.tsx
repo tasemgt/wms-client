@@ -129,7 +129,7 @@ export default function RegisterPage() {
       if(res.status === 201) {   
         // Show success toast
         toast({
-          title: "Registration Successful!",
+          title: "RSVP Successful!",
           description:
             formData.attending === "no"
               ? "Thank you for your response and gift selection."
@@ -142,7 +142,7 @@ export default function RegisterPage() {
     } catch (error) {
       console.error("Registration error:", error)
       toast({
-        title: "Registration Unsuccessful",
+        title: "RSVP Unsuccessful",
         description: "There was an error submitting your rsvp. Please try again.",
         variant: "destructive",
         duration: 5000,
@@ -500,7 +500,7 @@ export default function RegisterPage() {
             Back to Home
           </Link>
           <Heart className="h-12 w-12 text-primary fill-primary mx-auto mb-4" />
-          <h1 className="text-3xl font-bold text-primary">RSVP Registration</h1>
+          <h1 className="text-3xl font-bold text-primary">Your RSVP</h1>
           <p className="text-muted-foreground">Step {step} of 3</p>
         </div>
 
@@ -854,7 +854,7 @@ export default function RegisterPage() {
                         Submitting...
                       </>
                     ) : (
-                      "Complete Registration"
+                      "Complete RSVP"
                     )}
                   </Button>
                 </div>
