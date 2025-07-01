@@ -445,7 +445,7 @@ export default function RegisterPage() {
                         <p className="text-sm text-muted-foreground mt-1">For event updates if provided</p>
                       </div>
                       <div>
-                        <Label htmlFor="email">Email Address (Optional)</Label>
+                        <Label htmlFor="email">Email Address</Label>
                         <Input
                           id="email"
                           type="email"
@@ -455,7 +455,7 @@ export default function RegisterPage() {
                         />
                       </div>
                       <div>
-                        <Label htmlFor="message">Message (Optional)</Label>
+                        <Label htmlFor="message">Goodwill Message (Optional)</Label>
                         <Textarea
                           id="message"
                           value={formData.goodwillMessage}
@@ -678,7 +678,7 @@ export default function RegisterPage() {
                     <p className="text-sm text-muted-foreground mt-1">We need this to send your e-card link and other event updates</p>
                   </div>
                   <div>
-                    <Label htmlFor="email">Email Address (Optional)</Label>
+                    <Label htmlFor="email">Email Address</Label>
                     <Input
                       id="email"
                       type="email"
