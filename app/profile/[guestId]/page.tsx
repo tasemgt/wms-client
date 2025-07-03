@@ -26,7 +26,7 @@ const eventDetails = {
   venue: "Event Hall, Top Rank Hotels Galaxy Utako, Abuja",
   address: "Plot 245 Pow Mafemi Off Solomon Lar Way, Utako, Abuja, Nigeria",
   colors: ["#673147", "#C8A2C8", "#818589"],
-  dresscode: "Formal attire requested",
+  dresscode: "Color coded Asoebi requested",
 }
 
 
@@ -419,7 +419,7 @@ export default function GuestProfilePage({ params }: { params: { guestId: string
                 </div>
                 <div className="flex flex-col text-right">
                   <span className="text-gray-500">Dress Code</span>
-                  <div className="font-semibold text-gray-800 text-xs">Formal Attire</div>
+                  <div className="font-semibold text-gray-800 text-xs">Color coded Asoebi</div>
                 </div>
               </div>
             </div>
